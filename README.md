@@ -1,5 +1,4 @@
-# Daily Programmer Solutions 
-\- Matthew Meade
+# Daily Programmer Solutions - Matthew Meade
 
 ## About
 This repo contains all my solutions for [/r/DailyProgrammer](https://www.reddit.com/r/dailyprogrammer/)
@@ -13,6 +12,6 @@ Each directory contains the code solution, example IO, and a README outlining th
 | 294E | 2016-12-22 | Rack management 1                         | https://reddit.com/5go843 | https://goo.gl/4peDXx | C++      | 
 | 295E | 2016-12-20 | Letter by letter                          | https://reddit.com/5hy8sm | https://goo.gl/WGPrcs | C++      | 
 | 296E | 2016-12-21 | The Twelve Days of                        | https://reddit.com/5j6ggm | https://goo.gl/9ygsvc | C++      | 
-| 279I | 2016-12-25 | Text Reflow                               | https://reddit.com/4ybbcz | https://goo.gl/AMmTtf | c++      | 
+| 279I | 2016-12-25 | Text Reflow                               | https://reddit.com/4ybbcz | https://goo.gl/AMmTtf | C++      | 
 | 296I | 2016-12-27 | Interceting Area Of Overlaping Rectangles | https://reddit.com/5jpt8v | https://goo.gl/DDld7L | C++      | 
 
