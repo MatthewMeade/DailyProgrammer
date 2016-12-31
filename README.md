@@ -2,7 +2,8 @@
 
 ## About
 This repo contains all my solutions for [/r/DailyProgrammer](https://www.reddit.com/r/dailyprogrammer/)
-Each directory contains the code solution, example IO, and a README outlining the problem and explains my solution
+
+Each directory contains the code solution, example IO, and a README that outlines the problem and my solution
 
 ## Challenges
 | NUM  | Date       | Name | Reddit Link               			| Code Link             | Language | 
