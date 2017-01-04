@@ -11,6 +11,7 @@ bool isBracket(char c);
 bool isOperator(char c);
 void convert(vector <string> &tokens, string &output);
 int precedence(char c);
+double solve(vector<string> tokens);
 
 
 int main() {
@@ -21,15 +22,21 @@ int main() {
 
     splitTokens(line, tokens);
 
-    /*for(int i = 0; i < tokens.size(); i++){
-        cout << tokens[i];
-    } */
+//    for(int i = 0; i < tokens.size(); i++) cout << tokens[i] << endl;
+    cout << endl;
 
     string out;
     convert(tokens, out);
     cout << out << endl;
 
-    cout << endl;
+    tokens.clear();
+    splitTokens(out, tokens);
+
+//    for(int i = 0; i < tokens.size(); i++) cout << tokens[i] << endl;
+
+    double result = solve(tokens);
+    cout << "Result: " << result << endl;
+
     return 0;
 }
 
@@ -118,4 +125,37 @@ void convert(vector <string> &tokens, string &output){
         output += ' ';
         stack.erase(stack.begin());
     }
+}
+
+double solve(vector<string> tokens){
+    vector <string> stack;
+    string token;
+
+    for(int i = 0; i < tokens.size(); i++){
+        token = tokens[i];
+//        cout << "Token: " << token << endl;
+        if(!isOperator(token[0])){
+            stack.insert(stack.begin(),token);
+        }else{
+            double n1 = stod(stack[1]);
+            double n2 = stod(stack[0]);
+            stack.erase(stack.begin(), stack.begin()+2);
+
+            double r = 0;
+
+            switch (token[0]){
+                case '+': r = n1 + n2; break;
+                case '-': r = n1 - n2; break;
+                case '/': r = n1 / n2; break;
+                case 'x': case '*': r = n1 * n2; break;
+                default: cout << "Invalid Operator" << endl;
+            }
+            stack.insert(stack.begin(),to_string(r));
+        }
+    }
+
+    if(stack.size() == 1) return stod(stack[0]);
+    else cout << "Invalid input" << endl;
+    return 0;
+
 }
