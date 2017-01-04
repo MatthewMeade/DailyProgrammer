@@ -1,3 +1,15 @@
+/* TODO
+ * Add Comments
+ * Handle Invalid inputs
+ *  - Mismatched Parenthesis
+ *  - Invalid Operands
+ *  Add Operators
+ *   - Powers ^
+ *   - Factorials !
+ *   - Modulus %
+ *   - Integer Division // or \
+ */
+
 #include <iostream>
 #include <string>
 #include <vector>
