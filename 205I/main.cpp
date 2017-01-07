@@ -1,8 +1,5 @@
 /* TODO
  * Add Comments
- * Handle Invalid inputs
- *  - Mismatched Parenthesis
- *  - Invalid Operands
  *  Add Operators
  *   - Powers ^
  *   - Factorials !
@@ -21,9 +18,9 @@ string getNum(string line, int &pos);
 bool isDigit(char c);
 bool isBracket(char c);
 bool isOperator(char c);
-void convert(vector <string> &tokens, string &output);
+bool convert(vector <string> &tokens, string &output);
 int precedence(char c);
-double solve(vector<string> tokens);
+bool solve(vector<string> tokens, double &result);
 
 
 int main() {
@@ -34,19 +31,22 @@ int main() {
 
     splitTokens(line, tokens);
 
-//    for(int i = 0; i < tokens.size(); i++) cout << tokens[i] << endl;
-    cout << endl;
-
     string out;
-    convert(tokens, out);
-    cout << out << endl;
+
+    if(!convert(tokens, out)){
+        return -1;
+    }
 
     tokens.clear();
     splitTokens(out, tokens);
 
-//    for(int i = 0; i < tokens.size(); i++) cout << tokens[i] << endl;
 
-    double result = solve(tokens);
+    double result;
+    if(!solve(tokens, result)){
+        return -1;
+    }
+
+    cout << out << endl;
     cout << "Result: " << result << endl;
 
     return 0;
@@ -94,7 +94,7 @@ int precedence(char c){
     return -1;
 }
 
-void convert(vector <string> &tokens, string &output){
+bool convert(vector <string> &tokens, string &output){
     string token;
     vector <string> stack;
     for(int i = 0; i < tokens.size(); i++){
@@ -127,28 +127,43 @@ void convert(vector <string> &tokens, string &output){
                 stack.erase(stack.begin());
             }
 
+            if(stack.size() == 0){
+                cout << "Mismatched Parentheses" << endl;
+                return false;
+            }
             stack.erase(stack.begin());
         }
 
     }
 
     while(stack.size() > 0){
+        if(isBracket(stack[0][0])){
+            cout << "Mismatched Parentheses" << endl;
+            return false;
+        }
         output += stack[0];
         output += ' ';
         stack.erase(stack.begin());
     }
+
+    return true;
 }
 
-double solve(vector<string> tokens){
+bool solve(vector<string> tokens, double &result){
     vector <string> stack;
     string token;
 
     for(int i = 0; i < tokens.size(); i++){
         token = tokens[i];
-//        cout << "Token: " << token << endl;
+
         if(!isOperator(token[0])){
             stack.insert(stack.begin(),token);
         }else{
+
+            if(stack.size() < 2){
+                cout << "Invalid values" << endl;
+                return false;
+            }
             double n1 = stod(stack[1]);
             double n2 = stod(stack[0]);
             stack.erase(stack.begin(), stack.begin()+2);
@@ -166,8 +181,13 @@ double solve(vector<string> tokens){
         }
     }
 
-    if(stack.size() == 1) return stod(stack[0]);
-    else cout << "Invalid input" << endl;
-    return 0;
+    if(stack.size() == 1) {
+        result = stod(stack[0]);
+        return true;
+    }
+    else {
+        cout << "Invalid input" << endl;
+        return false;
+    }
 
 }
