@@ -1,19 +1,11 @@
-/* TODO
- * Add Comments
- *  Add Operators
- *   - Powers ^
- *   - Factorials !
- *   - Modulus %
- *   - Integer Division // or \
- */
-
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
-void splitTokens(string line, vector<string> &tokens);
+bool splitTokens(string line, vector<string> &tokens);
 string getNum(string line, int &pos);
 bool isDigit(char c);
 bool isBracket(char c);
@@ -21,6 +13,7 @@ bool isOperator(char c);
 bool convert(vector <string> &tokens, string &output);
 int precedence(char c);
 bool solve(vector<string> tokens, double &result);
+int fact(int n);
 
 
 int main() {
@@ -29,7 +22,11 @@ int main() {
 
     getline(cin, line);
 
-    splitTokens(line, tokens);
+    if(!splitTokens(line, tokens)){
+        return -1;
+    }
+
+//    for(int i = 0; i < tokens.size(); i++) cout << tokens[i] << " ~ " << endl;
 
     string out;
 
@@ -38,7 +35,9 @@ int main() {
     }
 
     tokens.clear();
-    splitTokens(out, tokens);
+    if(!splitTokens(out, tokens)){
+        return -1;
+    }
 
 
     double result;
@@ -52,15 +51,26 @@ int main() {
     return 0;
 }
 
-void splitTokens(string line, vector<string> &tokens){
+bool splitTokens(string line, vector<string> &tokens){
     for(int i = 0; line[i]; i++){
+
         if(isDigit(line[i])){
             tokens.push_back(getNum(line, i));
         }
-        if(isOperator(line[i]) || isBracket(line[i])){
+
+        if(line[i] == '/' && line[i+1] == '/'){
+            tokens.push_back("\\");
+            i++;
+        }else if(isOperator(line[i]) || isBracket(line[i])){
             tokens.push_back(string(1,line[i]));
         }
+
+        if(!isOperator(line[i]) && !isDigit(line[i]) && !isBracket(line[i]) && line[i] != ' ' && line[i] != 0){
+            cout << "Invalid Character: " << (int)line[i] << endl;
+            return false;
+        }
     }
+    return true;
 }
 
 string getNum(string line, int &pos){
@@ -85,12 +95,17 @@ bool isOperator(char c){
            c == '-' ||
            c == '/' ||
            c == 'x' ||
-           c == '*';
+           c == '*' ||
+           c == '^' ||
+           c == '!' ||
+           c == '%' ||
+           c == '\\';
 }
 
 int precedence(char c){
     if(c == '+' || c == '-') return 0;
-    if( c== '/' || c == 'x' || c== '*') return 1;
+    if(c == '/' || c == '%' || c == '\\' || c == 'x' || c== '*') return 1;
+    if(c == '^') return 2;
     return -1;
 }
 
@@ -154,19 +169,32 @@ bool solve(vector<string> tokens, double &result){
     string token;
 
     for(int i = 0; i < tokens.size(); i++){
+
         token = tokens[i];
 
         if(!isOperator(token[0])){
             stack.insert(stack.begin(),token);
         }else{
 
-            if(stack.size() < 2){
+            int numArgs = (token[0] == '!') ? 1 : 2;
+
+            if(stack.size() < numArgs){
                 cout << "Invalid values" << endl;
                 return false;
             }
-            double n1 = stod(stack[1]);
-            double n2 = stod(stack[0]);
-            stack.erase(stack.begin(), stack.begin()+2);
+
+            double n1 = 0;
+            double n2 = 0;
+
+            if(numArgs == 2){
+                n1 = stod(stack[1]);
+                n2 = stod(stack[0]);
+                stack.erase(stack.begin(), stack.begin()+2);
+            }else{
+                n1 = stod(stack[0]);
+                stack.erase(stack.begin());
+            }
+
 
             double r = 0;
 
@@ -175,6 +203,10 @@ bool solve(vector<string> tokens, double &result){
                 case '-': r = n1 - n2; break;
                 case '/': r = n1 / n2; break;
                 case 'x': case '*': r = n1 * n2; break;
+                case '^': r = pow(n1, n2); break;
+                case '%': r = (int)n1 % (int)n2; break;
+                case '\\': r = (int) n1 / (int) n2; break;
+                case '!': r = fact((int) n1); break;
                 default: cout << "Invalid Operator" << endl;
             }
             stack.insert(stack.begin(),to_string(r));
@@ -191,3 +223,8 @@ bool solve(vector<string> tokens, double &result){
     }
 
 }
+
+int fact(int n){
+    return (n > 1) ? n * fact(n-1) : 1;
+}
+
