@@ -13,7 +13,7 @@ bool isOperator(char c);
 bool convert(vector <string> &tokens, string &output);
 int precedence(char c);
 bool solve(vector<string> tokens, double &result);
-int fact(int n);
+unsigned long int fact(int n);
 
 
 int main() {
@@ -52,7 +52,7 @@ int main() {
 }
 
 bool splitTokens(string line, vector<string> &tokens){
-    for(int i = 0; line[i]; i++){
+    for(int i = 0; i < line.length(); i++){
 
         if(isDigit(line[i])){
             tokens.push_back(getNum(line, i));
@@ -224,7 +224,7 @@ bool solve(vector<string> tokens, double &result){
 
 }
 
-int fact(int n){
+unsigned long int fact(int n){
     return (n > 1) ? n * fact(n-1) : 1;
 }
 
