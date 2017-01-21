@@ -1,4 +1,5 @@
 #RPN
+### [Reddit Link](https://reddit.com/2yquvm)
 
 ##Description:
 My father owned a very old HP calculator. It was in reverse polish notation (RPN). He would hand me his calculator and tell me "Go ahead and use it". Of course I did not know RPN so everytime I tried I failed.
