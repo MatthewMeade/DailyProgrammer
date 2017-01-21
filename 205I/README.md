@@ -8,14 +8,14 @@ So for this challenge we will help out young coder_d00d. We will take a normal m
 ##Input:
 A string that represents a math equation to be solved. We will allow the 4 functions, use of () for ordering and thats it. Note white space between characters could be inconsistent.
 
-'''
+```
 Number is a number
 "+" add
 "-" subtract
 "/" divide
 "x" or "*" for multiply
 "(" with a matching ")" for ordering our operations
-'''
+```
 
 ##Output:
 The RPN (reverse polish notation) of the math equation.
@@ -23,7 +23,7 @@ The RPN (reverse polish notation) of the math equation.
 ##Challenge inputs:
 **Note:** "" *marks the limit of string and not meant to be parsed.*
 
-'''
+```
  "0+1"
  "20-18"
  " 3               x                  1   "
@@ -34,7 +34,7 @@ The RPN (reverse polish notation) of the math equation.
  "10000 / ( 9 x 9 + 20 -1)-92"
  "4+5 * (333x3 /      9-110                                      )"
  " 0 x (2000 / 4 * 5 / 1 * (1 x 10))"
-'''
+```
 
 ##Additional Challenge:
 Since you already got RPN - solve the equations.
