@@ -19,6 +19,7 @@ There can be multiple wires with the same colour and these instructions are for 
 
 ##Input description
 You will recieve a sequence of wires that where cut in that order and you have to determine if the person was succesfull in disarming the bomb or that it blew up.
+
 **Input 1**
 ```
 white
@@ -36,12 +37,13 @@ white
 
 ##Output description
 Wheter or not the bomb exploded
+
 **Output 1**
 ```
 "Bomb defused"
 ```
 
-***Output 2***
+**Output 2**
 
 ```
 "Boom"
