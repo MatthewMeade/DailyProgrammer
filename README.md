@@ -3,10 +3,10 @@
 ## About
 This repo contains all my solutions for [/r/DailyProgrammer](https://www.reddit.com/r/dailyprogrammer/)
 
-Each directory contains the code solution, example IO, and a README that outlines the problem and my solution
+Each directory contains the code solution, example IO, and a README that outlines the problem
 
 ## Challenges
-| NUM  | Date       | Name | Reddit Link               			| Code Link             | Language | 
+| NUM  | Date       | Name 										| Reddit Link               | Code Link             | Language | 
 |------|------------|-------------------------------------------|---------------------------|-----------------------|----------| 
 | 277E | 2016-12-23 | Simplifying fractions                     | https://reddit.com/4uhqdb | https://goo.gl/ASbVf6 | C++      | 
 | 293E | 2016-12-22 | Defusing the bomb                         | https://reddit.com/5e4mde | https://goo.gl/OEYxQp | C++      | 
@@ -15,4 +15,5 @@ Each directory contains the code solution, example IO, and a README that outline
 | 296E | 2016-12-21 | The Twelve Days of                        | https://reddit.com/5j6ggm | https://goo.gl/9ygsvc | C++      | 
 | 279I | 2016-12-25 | Text Reflow                               | https://reddit.com/4ybbcz | https://goo.gl/AMmTtf | C++      | 
 | 296I | 2016-12-27 | Interceting Area Of Overlaping Rectangles | https://reddit.com/5jpt8v | https://goo.gl/DDld7L | C++      | 
+| 205I | 2017-01-20 | Reverse Polish Notation 					| https://reddit.com/2yquvm | https://goo.gl/VzP19n | C++      |
 
